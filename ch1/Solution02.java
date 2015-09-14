@@ -13,6 +13,7 @@ public class Solution02 {
 			return false;
 		}
 		
+		// Sort the char array
 		char[] sArr = s.toCharArray();
 		char[] tArr = t.toCharArray();
 		java.util.Arrays.sort(sArr);
