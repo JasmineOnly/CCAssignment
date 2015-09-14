@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 /*
  * Author: Yuanyuan Ma
  * Andrew ID: yuanyuam
@@ -13,7 +11,7 @@ import java.util.HashMap;
 public class Solution04 {
 
 	public boolean isPermutationOfPalindrome(String str) {
-		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+		java.util.HashMap<Integer, Integer> hm = new java.util.HashMap<Integer, Integer>();
 
 		// Populate the HashMap
 		int temp = 0;
