@@ -19,7 +19,14 @@ public class Solution02 {
 		java.util.Arrays.sort(sArr);
 		java.util.Arrays.sort(tArr);
 		
-		return sArr.equals(tArr);
+		return new String(sArr).equals(new String(tArr));
+		
+	}
+	
+	public static void main(String[] args){
+		Solution02 so = new Solution02();
+		System.out.println(so.permutation("dog", "god"));
+		System.out.println(so.permutation("abc", "efg"));
 		
 	}
 }

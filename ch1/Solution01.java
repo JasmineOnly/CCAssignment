@@ -21,5 +21,11 @@ public class Solution01 {
 		return true;
 	}
 	
+	public static void main(String[] args){
+		Solution01 so = new Solution01();
+		System.out.println(so.isUniqueChars("apple"));
+		System.out.println(so.isUniqueChars("great"));
+		
+	}
 	
 }

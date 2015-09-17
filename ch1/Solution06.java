@@ -13,14 +13,24 @@ public class Solution06 {
 		int end = 1;
 
 		while (end < s.length()) {
-			if (s.charAt(start) == s.charAt(end) && end != s.length() - 1) {
-				end++;
+			if (s.charAt(start) == s.charAt(end)) {
+				if (end == s.length() - 1) {
+					buffer.append(s.charAt(start)).append(end - start + 1);
+					break;
+				} else {
+					end++;
+				}
+
 			} else {
 				buffer.append(s.charAt(start)).append(end - start);
-				start = end;
-				end++;
+				if (end == s.length() - 1) {
+					buffer.append(s.charAt(end)).append(1);
+					break;
+				} else {
+					start = end;
+					end++;
+				}
 			}
-
 		}
 
 		if (buffer.length() > s.length()) {
@@ -28,6 +38,13 @@ public class Solution06 {
 		} else {
 			return buffer.toString();
 		}
+
+	}
+
+	public static void main(String[] args) {
+		Solution06 so = new Solution06();
+		System.out.println(so.compress("aabcccccaaa"));
+		System.out.println(so.compress("aabcccccaaac"));
 
 	}
 

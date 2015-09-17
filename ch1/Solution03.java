@@ -51,6 +51,12 @@ public class Solution03 {
 	}
 	 */
 
+	public static void main(String[] args){
+		Solution03 so = new Solution03();
+		System.out.println(so.replaceSpaces("Mr John Smith             ", 13));
+		
+		
+	}
 	
 
 	

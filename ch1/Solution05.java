@@ -50,5 +50,14 @@ public class Solution05 {
 
 		return true;
 	}
+	
+	public static void main(String[] args){
+		Solution05 so = new Solution05();
+		System.out.println(so.isOneEdit("ple", "pale"));
+		System.out.println(so.isOneEdit("pales", "pale"));
+		System.out.println(so.isOneEdit("bale", "pale"));
+		System.out.println(so.isOneEdit("pale", "bae"));
+		
+	}
 
 }

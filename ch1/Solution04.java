@@ -1,3 +1,4 @@
+
 /*
  * Author: Yuanyuan Ma
  * Andrew ID: yuanyuam
@@ -66,6 +67,12 @@ public class Solution04 {
 		}
 
 		return num;
+	}
+	
+	public static void main(String[] args){
+		Solution04 so = new Solution04();
+		System.out.println(so.isPermutationOfPalindrome("Tact Coa"));
+		
 	}
 	
 }
