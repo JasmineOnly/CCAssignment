@@ -1,39 +1,26 @@
-import java.util.Stack;
-class Solution05 {
-	public static void main(String[] args) {
-		Stack<Integer> stack = new Stack<Integer>();
-		stack.push(1);
-		stack.push(2);
-		stack.push(3);
-		stack.push(-5);
-		SortStack.sort(stack);
-		for (int i : stack) {
-			System.out.print(i + " ");
-		}
-	}
-}
 
-class SortStack {
-	
-	public static void sort(Stack<Integer> stack) {
-		Stack<Integer> buffer = new Stack<Integer>();
-		while (!stack.isEmpty()) {
-			if (buffer.isEmpty()) {
-				buffer.push(stack.pop());
+public class Solution05 {
+	public static Stack sortStack (Stack s1){
+		Stack s2 = new Stack();
+		while(! s1.isEmpty()){
+			int temp = s1.pop();
+			while(!s2.isEmpty() && s2.peek() < temp){
+				s1.push(s2.pop());
 			}
-			else {
-				int tmp = buffer.peek();
-				if (stack.peek() >= tmp) {
-					buffer.push(stack.pop());
-				} else {
-					int val = stack.pop();
-					while (!buffer.isEmpty() && buffer.peek() > val) {
-						stack.push(buffer.pop());
-					}
-					buffer.push(val);
-				}
-			}
+			s2.push(temp);
 		}
-		stack.addAll(buffer);
+		return s2;
 	}
+	public static void main(String[] args) {
+		Stack stack = new Stack();
+		stack.push(3);
+		stack.push(4);
+		stack.push(5);
+		stack.push(1);
+		Stack sortedStack = sortStack(stack);
+		while(! sortedStack.isEmpty()) {
+			System.out.print(sortedStack.pop() + " ");
+		}
+	}
+
 }
