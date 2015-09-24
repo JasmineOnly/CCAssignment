@@ -1,61 +1,42 @@
-import java.util.*;
-class MyQueue {
-    // Push element x to the back of queue.
-    public Stack<Integer> stack1;
-    public Stack<Integer> stack2;
-    public MyQueue() {
-        stack1 = new Stack<Integer>();
-        stack2 = new Stack<Integer>();
-    }
-    
-    public void push(int x) {
-        stack1.push(x);
+
+public class Solution04 {
+	public static void main(String[] args) {
+        NewQueue queue = new NewQueue();
+        queue.add(1);
+        queue.add(2);
+        System.out.println("The peek of the queue is " + queue.peek());
+        queue.remove();
+        System.out.println("The peek of the queue is " +queue.peek());
     }
 
-    // Removes the element from in front of queue.
-    public void pop() {
-        if (!stack2.isEmpty()) {
-            stack2.pop();
-            return;
-        } else {
-            while (!stack1.isEmpty()) {
-                stack2.push(stack1.pop());
-            }
-        }
-        if (!stack2.isEmpty()) {
-            stack2.pop();
-        }
-    }
 
-    // Get the front element.
-    public int peek() {
-        if (!stack2.isEmpty()) {
-            return stack2.peek();
-        } else {
-            while (!stack1.isEmpty()) {
-                stack2.push(stack1.pop());
-            }
-        }
-        if (!stack2.isEmpty()) {
-            return stack2.peek();
-        }        
-        return -1;
-    }
-
-    // Return whether the queue is empty.
-    public boolean empty() {
-        return stack1.isEmpty() && stack2.isEmpty();
-    }
 }
-
-class Solution04 {
-    public static void main(String[] args) {
-        MyQueue queue = new MyQueue();
-        queue.push(1);
-        queue.push(2);
-        System.out.println(queue.peek());
-        queue.pop();
-        System.out.println(queue.peek());
-
-    }
+class NewQueue{
+	Stack newest = new Stack();
+	Stack oldest = new Stack();
+	
+	// push the newest item to stack newest
+	public void add(Integer value){
+		newest.push(value);
+	}
+	
+	// use the second stack to reverse the order of the element
+	public void stackShift(){
+		if (oldest.isEmpty()){
+			while(! newest.isEmpty()){
+				int temp = newest.pop();
+				oldest.push(temp);			
+			}
+		}
+	}
+	
+	public int remove(){
+		stackShift();
+		return oldest.pop();	
+	}
+	
+	public int peek(){
+		stackShift();
+		return oldest.peek();
+	}
 }
