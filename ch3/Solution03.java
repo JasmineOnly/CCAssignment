@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Solution03 {
 	public static void main(String[] args) {
 		SetOfPlates stack = new SetOfPlates();
@@ -22,16 +23,17 @@ class Solution03 {
 
 class SetOfPlates {
 	public static int capacity = 3;
-	public static ArrayList<Stack<Integer>> lists = new ArrayList<Stack<Integer>>();
+	public static ArrayList<NewStack> lists = new ArrayList<NewStack>();
+	
 	public static void push (int val) {
 		int index = lists.size();
 		if (index == 0) {
-			Stack<Integer> stack = new Stack<Integer>();
+			NewStack stack = new NewStack();
 			stack.push(val);
 			lists.add(stack);
 		} else {
 			if (lists.get(index - 1).size() >= capacity) {
-				Stack<Integer> stack = new Stack<Integer>();
+				NewStack stack = new NewStack();
 				stack.push(val);
 				lists.add(stack);		
 			} else {
@@ -54,6 +56,57 @@ class SetOfPlates {
 		}
 	}
 
+}
 
+class NewStack {
+	
+	public int size = 0;
+	// Inner class StackNode
+	private static class StackNode<Integer> {
+		private Integer data;
+		private StackNode<Integer> next;
+
+		public StackNode(Integer data) {
+			this.data = data;
+		}
+	}
+
+	private StackNode<Integer> top;
+
+	public Integer pop() {
+		if (top == null) {
+			System.out.println("The stack is empty!");
+		}
+		size--;
+		Integer item = top.data;
+		top = top.next;
+		return item;
+	}
+	
+	public void push(Integer data){
+		StackNode t = new StackNode(data);
+		t.next = top;
+		top = t;
+		size++;
+	}
+	
+	public Integer peek(){
+		if(top == null){
+			System.out.println("This stack is empty!");
+		}
+		return top.data;
+	}
+	
+	public boolean isEmpty(){
+		return top == null;
+	}
+	
+	public int size()
+	{
+		return size;
+	}	
+	
 
 }
+
+
