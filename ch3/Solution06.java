@@ -1,105 +1,108 @@
-import java.util.*;
+import java.util.LinkedList;
 
-class Solution06 {
-	public static void main(String[] args) {
-		AnimalShelter shelter = new AnimalShelter();
-		shelter.enqueue(0, "cat1");
-		shelter.enqueue(1, "dog2");
-		shelter.enqueue(0, "cat3");
-		shelter.enqueue(0, "cat4");
 
-		System.out.println(shelter.dequeueCat().print());
-		System.out.println(shelter.dequeueDog().print());
-		System.out.println(shelter.dequeue().print());
-		System.out.println(shelter.dequeueCat().print());
+public class Solution06 {
+	public static void main(String[] args){
+		AnimalQueue aq = new AnimalQueue();
+		Dog d1 = new Dog("Happy");
+		Dog d2 = new Dog("Luck");
+		Cat c1 = new Cat("Snow");
+		aq.enqueue(d1);
+		aq.enqueue(d2);
+		aq.enqueue(c1);
+		
+		System.out.println("The custom want to adopt an animal!");
+		Animal a1 = aq.dequeueAnimal();
+		System.out.println("The animal's name is : " + a1.name);
+		
+		System.out.println("The custom want to adopt an dog!");
+		Dog a2 = aq.dequeueDog();
+		System.out.println("The dog's name is : " + a2.name);
+		
+		System.out.println("The custom want to adopt an cat!");
+		Cat a3 = aq.dequeueCat();
+		System.out.println("The cat's name is : " + a3.name);
 	}
+
 }
 
-abstract class Animal {
-	public String name;		
-	public int time;
-	public Animal(String name) {
+class Animal {
+	protected String name;
+	public int num; // time stamp
+	
+	Animal(String name){
 		this.name = name;
 	}
 
-	public int getTime (){
-		return this.time;
+	public int getNum() {
+		return num;
 	}
-	public String print() {
-		return name;
+
+	public void setNum(int num) {
+		this.num = num;
 	}
+		
 }
 
-class Cat extends Animal {
-	public Cat(String name, int time) {
+class Dog extends Animal{
+	public Dog(String name){
 		super(name);
-		this.time = time;
-	} 
-	public String print() {
-		return "Cat, " + name;
 	}
 }
 
-class Dog extends Animal {
-	public Dog(String name, int time) {
+class Cat extends Animal{
+	public Cat(String name){
 		super(name);
-		this.time = time;
-	} 
-	public String print() {
-		return "Dog, " + name;
 	}
 }
 
-class AnimalShelter{
-	public Queue<Dog> DogQueue = new LinkedList<Dog> ();
-    public Queue<Cat> CatQueue = new LinkedList<Cat> ();
-    public int time = 0;
-
-	public void enqueue(int type, String name) { // type 0 cat, tpye 1 dog
-		if (type < 0 || type > 1) return;
-		if (type == 0) {
-			Cat cat = new Cat(name, time);
-			CatQueue.offer(cat);
-		} else {
-			Dog dog = new Dog(name, time);
-			DogQueue.offer(dog);
+class AnimalQueue {
+	LinkedList<Dog> dog = new LinkedList<Dog> ();
+	LinkedList<Cat> cat = new LinkedList<Cat> ();
+	private int num = 0;
+	
+	public void enqueue(Animal a){
+		a.setNum(num);
+		num++;
+		
+		if(a instanceof Dog){
+			dog.addLast((Dog) a);
 		}
-		time ++;
-	}
-
-	public Dog dequeueDog() {
-		if (DogQueue.isEmpty()) {
-			return null;
-		} else {
-			return DogQueue.poll();
+		
+		if (a instanceof Cat){
+			cat.addLast((Cat) a);
 		}
 	}
-
-	public Cat dequeueCat() {
-		if (CatQueue.isEmpty()) {
-			return null;
-		} else {
-			return CatQueue.poll();
-		}
+	
+	public Dog dequeueDog(){
+		return dog.pollFirst();
 	}
-
-	public Animal dequeue() {
-		if (CatQueue.isEmpty()) {
-			return DogQueue.poll();
-		}
-
-		if (DogQueue.isEmpty()) {
-			return CatQueue.poll();
-		}
-
-		Cat cat = CatQueue.peek();
-		Dog dog = DogQueue.peek();
-
-		if (dog.getTime() < cat.getTime()) {
-			return (Animal)DogQueue.poll();
-		} else {
-			return (Animal)CatQueue.poll();
-		}
+	
+	public Cat dequeueCat(){
+		return cat.pollFirst();
 	}
-
+	
+	public Animal dequeueAnimal(){
+		if (dog.size() == 0 && cat.size() == 0){
+			System.out.println("There is no avaiable animal!");
+		}
+		
+		if (dog.size() == 0){
+			return dequeueCat();
+		}
+		
+		if (cat.size() == 0){
+			return dequeueDog();
+		}
+		
+		Dog d = dog.peek();
+		Cat c = cat.peek();
+		if (d.num < c.num){
+			return dog.pollFirst();
+		}else{
+			return cat.pollFirst();
+		}
+		
+	}
+	
 }
