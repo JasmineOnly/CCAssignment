@@ -1,5 +1,9 @@
 import java.util.*;
 
+/*
+ * This file is used to determine whether two nodes are connected or not.
+ */
+
 class Digraph {
     public int V;
 	public ArrayList<Integer>[] adj;
@@ -18,6 +22,7 @@ class Digraph {
 	}
 }
 
+// use the recursive way to find the destination node.
 class DFS {
 	public boolean[] isConnected;
 	public DFS(Digraph G, int start) {

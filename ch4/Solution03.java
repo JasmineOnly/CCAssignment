@@ -1,3 +1,6 @@
+/*
+ * This file is used tocreate several linked lists to store a binary tree data.
+ */
 
 class TreeNode {
     int val;
@@ -7,6 +10,8 @@ class TreeNode {
 }
 
 public class Solution03 {
+    
+    // The length of list is equal to the depth of the tree:
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
@@ -19,6 +24,7 @@ public class Solution03 {
         firstlevel.add(root.val);
         result.add(firstlevel);
 
+        // do level-order traversal, which is also referred to the BFS.
         while(!nodes.isEmpty()) {
             ArrayList<Integer> level = new ArrayList<Integer> ();
             int size = nodes.size();

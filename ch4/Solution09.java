@@ -1,9 +1,14 @@
-package chapter4;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/* A binary search tree was created by traversing through an array from left to right
+ * and inserting each element. Given a binary search tree with distinct elements,
+ * print all possible arrays that could have led to this tree.
+ */
+
 public class Solution09 {
+    
 	public ArrayList<LinkedList<Integer>> BSTSequence(BSTreeNode root) {
 		 ArrayList<LinkedList<Integer>> result = new ArrayList<LinkedList<Integer>>();
 		 
@@ -29,6 +34,7 @@ public class Solution09 {
 		 return result;
 	}
 	
+    // Weave lists together in all possible way
 	public void weavelists(LinkedList<Integer> first, LinkedList<Integer> second,
 			               ArrayList<LinkedList<Integer>> results, LinkedList<Integer> prefix) {
 		if(first.size() == 0 || second.size() == 0) {
@@ -51,4 +57,20 @@ public class Solution09 {
 		prefix.removeLast();
 		second.addFirst(secondHead);
 	}
+    
+    public static void main(String[] args) {
+        TreeNode n=new TreeNode(1);
+        n.left = new TreeNode(2);
+        n.left.left= new TreeNode(3);
+        n.left.right=new TreeNode(4);
+        n.left.left.left=new TreeNode(5);
+        n.left.left.right=new TreeNo0de(6);
+        n.right = new TreeNode(7);
+        n.right.right=new TreeNode(8);
+        n.right.right.left=new TreeNode(9);
+        n.right.right.right=new TreeNode(10);
+        ArrayList<LinkedList<Integer>> n2=sequences(n);
+        print(n2);
+        
+    }
 }

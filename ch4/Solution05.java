@@ -1,3 +1,7 @@
+/*
+ *  This file is to check whether a tree is a BST or not
+ */
+
 import java.util.*;
 
 class TreeNode {
@@ -8,6 +12,8 @@ class TreeNode {
 }
 
 public class Solution05 {
+    
+    //Check the tree by definition of BST
     public static boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;

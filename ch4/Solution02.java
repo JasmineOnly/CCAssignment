@@ -1,3 +1,6 @@
+/*
+ * * This method is to create a minimal BST based on a sorted array.
+ */
 
 class TreeNode {
       int val;
@@ -22,6 +25,7 @@ class Solution02 {
         int len = end - start;
         TreeNode root = new TreeNode(nums[start + len / 2]);
 
+        //Create sub-tree for both left array and right array.
         root.left = bstHelper(nums, start, start + len / 2);
         root.right = bstHelper(nums, start + len / 2 + 1,  end);
         return root;    
