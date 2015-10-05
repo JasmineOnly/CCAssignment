@@ -16,6 +16,7 @@ public class Solution02 {
 class StackWithMin extends Stack {
 	Stack s2 = new Stack();
 
+    // if the element is the smallest, push it into the s2
 	public void push(int value) {
 		if (value <= getMin()) {
 			s2.push(value);
@@ -23,6 +24,7 @@ class StackWithMin extends Stack {
 		super.push(value);
 	}
 
+    //if the element is the minimum, pop it in both stacks
 	public Integer pop() {
 		int top = super.pop();
 		if (top == getMin()) {
@@ -31,6 +33,7 @@ class StackWithMin extends Stack {
 		return top;
 	}
 
+    // return the minmum from stack s2
 	public int getMin() {
 		if (s2.isEmpty()) {
 			return Integer.MAX_VALUE;

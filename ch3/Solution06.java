@@ -74,14 +74,17 @@ class AnimalQueue {
 		}
 	}
 	
+    // return a Dog from list dog
 	public Dog dequeueDog(){
 		return dog.pollFirst();
 	}
 	
+    // return a Cat from list cat
 	public Cat dequeueCat(){
 		return cat.pollFirst();
 	}
 	
+    // Method to dequene an animal with the biggest num(time stamp)
 	public Animal dequeueAnimal(){
 		if (dog.size() == 0 && cat.size() == 0){
 			System.out.println("There is no avaiable animal!");

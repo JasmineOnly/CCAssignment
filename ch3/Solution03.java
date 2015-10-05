@@ -21,6 +21,7 @@ class Solution03 {
 	}
 }
 
+//In this case, some of the stack are not at full capacity
 class SetOfPlates {
 	public static int capacity = 3;
 	public static ArrayList<NewStack> lists = new ArrayList<NewStack>();
@@ -58,6 +59,7 @@ class SetOfPlates {
 
 }
 
+
 class NewStack {
 	
 	public int size = 0;
@@ -73,6 +75,7 @@ class NewStack {
 
 	private StackNode<Integer> top;
 
+    // pop method
 	public Integer pop() {
 		if (top == null) {
 			System.out.println("The stack is empty!");
@@ -83,6 +86,7 @@ class NewStack {
 		return item;
 	}
 	
+    //push method
 	public void push(Integer data){
 		StackNode t = new StackNode(data);
 		t.next = top;
@@ -90,6 +94,7 @@ class NewStack {
 		size++;
 	}
 	
+    // peek method
 	public Integer peek(){
 		if(top == null){
 			System.out.println("This stack is empty!");

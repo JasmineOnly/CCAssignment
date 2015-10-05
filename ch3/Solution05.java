@@ -1,5 +1,7 @@
 
 public class Solution05 {
+    
+    // based on the insertion sort
 	public static Stack sortStack (Stack s1){
 		Stack s2 = new Stack();
 		while(! s1.isEmpty()){
@@ -11,6 +13,7 @@ public class Solution05 {
 		}
 		return s2;
 	}
+    
 	public static void main(String[] args) {
 		Stack stack = new Stack();
 		stack.push(3);
