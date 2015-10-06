@@ -1,38 +1,28 @@
-/*
- * * This method is to create a minimal BST based on a sorted array.
- */
 
-class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode(int x) { val = x; }
-}
+public class Solution02 {
+	public static void main(String[] args){
+		int[] arry = {1,2,3,4,5};
+		TreeNode n = sortedArrayToBST(arry);
+		
+	}
+	
+	public static TreeNode sortedArrayToBST(int arry[]){
+		return createMinimalBST(arry, 0, arry.length-1);
+	}
+	
+	public static TreeNode createMinimalBST(int arry[], int left, int right){
+		if(left < right){
+			return null;
+		}
+		
+		int mid = left + (left-right)/2;
+		// The middle of each subsection of the array becomes the root the node
+		TreeNode root = new TreeNode(arry[mid]);
+		root.left = createMinimalBST(arry, left, mid-1);
+		root.right = createMinimalBST(arry, mid+1, right);
+		
+		return root;
+		
+	}
 
-class Solution02 {
-    public static TreeNode sortedArrayToBST(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
-        return bstHelper(nums, 0, nums.length);
-    }
-    
-    public static TreeNode bstHelper(int[] nums, int start, int end) {
-        if (start >= end) {
-            return null;
-        }
-        
-        int len = end - start;
-        TreeNode root = new TreeNode(nums[start + len / 2]);
-
-        //Create sub-tree for both left array and right array.
-        root.left = bstHelper(nums, start, start + len / 2);
-        root.right = bstHelper(nums, start + len / 2 + 1,  end);
-        return root;    
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5,6};
-        TreeNode root = sortedArrayToBST(nums);
-    }
 }
