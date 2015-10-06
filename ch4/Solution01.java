@@ -1,56 +1,39 @@
-import java.util.*;
-
-/*
- * This file is used to determine whether two nodes are connected or not.
- */
-
-class Digraph {
-    public int V;
-	public ArrayList<Integer>[] adj;
-	public Digraph (int V) {
-		this.V = V;
-		adj = new ArrayList[V];
-		for (int v = 0; v < V; v++) {
-			adj[v] = new ArrayList<Integer>();
-		}
-	}
-	public void addEdge(int v, int w) {
-		adj[v].add(w);
-	}
-	public Iterable<Integer> adj(int v) {
-		return adj[v];
-	}
-}
-
-// use the recursive way to find the destination node.
-class DFS {
-	public boolean[] isConnected;
-	public DFS(Digraph G, int start) {
-		isConnected = new boolean[G.V];
-		dfsSearch(G, start);
-	}
-	public void dfsSearch(Digraph G, int start) {
-		isConnected[start] = true;
-		for (int edge : G.adj(start)) {
-			if (!isConnected[edge]) {
-				dfsSearch(G, edge);
-			}
-		}
-	}
-	public boolean isConnected(int node) {
-		return isConnected[node];
-	}
-}
+import java.util.LinkedList;
 
 public class Solution01 {
-	public static void main(String[] args) {
-		Digraph G = new Digraph(5);
-		G.addEdge(0, 1);
-		G.addEdge(0, 4);
-		G.addEdge(1, 3);
-		G.addEdge(1, 2);
-
-		DFS dfs = new DFS (G, 0);
-		System.out.println((dfs.isConnected(2) == true)? "true": "false");
+	public static void main(String[] args){
+		GraphNode n1= new GraphNode(1);
+		GraphNode n2= new GraphNode(2);
+		GraphNode n3= new GraphNode(3);
+		n1.adjacent.add(n2);
+		System.out.println(isConnected(n1,n2));
+		System.out.println(isConnected(n1,n3));
 	}
+	
+	public static boolean isConnected(GraphNode a, GraphNode b) {
+		if (a == null || b == null) {
+			return false;
+		}
+
+		if (a == b) {
+			return true;
+		}
+
+		for (GraphNode n : a.adjacent) {
+			if (!n.flag) {
+				n.setFlag(true);
+				if (n == b) {
+					return true;
+				} else {
+					return isConnected(n, b);
+				}
+			}		
+		}
+		
+		return false;
+	}
+	
+
 }
+
+
