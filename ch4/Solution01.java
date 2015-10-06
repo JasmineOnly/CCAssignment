@@ -20,6 +20,7 @@ public class Solution01 {
 		}
 
 		for (GraphNode n : a.adjacent) {
+            // check whether this node is checked or not
 			if (!n.flag) {
 				n.setFlag(true);
 				if (n == b) {
